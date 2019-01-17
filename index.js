@@ -15,8 +15,9 @@ app.get('/test', (req, res) => {
     url: 'https://www.lectio.dk/lectio/165/SkemaNy.aspx?type=elev&elevid=26559177918&week=032019'
   }
   request(options, (error, response, body) => {
-    const $ = cheerio.load(body)
-    console.log($('.s2skema'))
+    const html = body.match(/(<body[^]*<\/body>)/)[0]
+    const $ = cheerio.load(html)
+    res.send($('*').html())
   })
 })
 
