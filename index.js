@@ -1,11 +1,12 @@
 // import { getHTML, twCount } from './lib/scrape'
-import { getAuthToken } from './lib/lectioAuth';
+import { getAuthToken, fetchSkema } from './lib/lectio';
 
 import { cred } from './config/lectioCred';
 
 const go = async () => {
   const token = await getAuthToken(cred.username, cred.password);
-  console.log(token);
+  const skema = await fetchSkema(token);
+  console.log(skema);
 };
 
 go();
